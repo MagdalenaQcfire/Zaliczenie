@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 
 import java.io.File;
@@ -40,15 +41,14 @@ public class Zadanie2Steps2 {
 
     @When("user check a Hummingbird Printed Sweater product")
     public void userCheckAHummingbirdPrintedSweaterProduct() {
-        WebElement clickASweater = driver.findElement(By.cssSelector("#js-product-list > div.products.row > article:nth-child(2) > div > div.product-description > h2 > a"));
-        clickASweater.click();
+        driver.findElement(By.xpath("//*[@id=\"js-product-list\"]/div[1]/article[2]/div/a/img")).click();
     }
 
     @And("user check a Medium size")
     public void userCheckAMediumSize() {
         WebElement sizeInput = driver.findElement(By.xpath("//*[@id=\"group_1\"]"));
-        sizeInput.clear();
-        sizeInput.sendKeys("M");
+        Select siizeInput = new Select(sizeInput);
+        siizeInput.selectByValue("2");
     }
 
     @When("user chooses {int} item of product")
