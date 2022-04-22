@@ -4,13 +4,16 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.sk.Tak;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 
+
 import java.io.File;
 import java.time.Duration;
+import java.util.logging.FileHandler;
 
 
 public class Zadanie2Steps2 {
@@ -22,7 +25,7 @@ public class Zadanie2Steps2 {
         System.setProperty("webdriver.chrome.driver",
                 "src/main/resources/drivers/chromedriver.exe");
 
-        ChromeDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get("https://mystore-testlab.coderslab.pl/index.php");
@@ -80,7 +83,8 @@ public class Zadanie2Steps2 {
     @When("user chooses payment option")
     public void userChoosesPaymentOption() {
         driver.findElement(By.id("delivery_option_1")).click();
-        driver.findElement(By.xpath("//*[@id=\"js-delivery\"]/button")).click();
+        WebElement clickInput = driver.findElement(By.xpath("//*[@id=\"checkout-payment-step\"]/h1"));
+        clickInput.click();
     }
 
     @And("user clicks on order with payment obligation")
@@ -93,6 +97,7 @@ public class Zadanie2Steps2 {
     @Then("user take a screenshot of order confirmation")
     public void userTakeAScreenshotOfOrderConfirmation() {
         File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
         String screenshotBase64 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
     }
 }
