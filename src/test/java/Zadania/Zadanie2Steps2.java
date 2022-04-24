@@ -4,16 +4,14 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.sk.Tak;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-
-
 import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
-import java.util.logging.FileHandler;
 
 
 public class Zadanie2Steps2 {
@@ -95,9 +93,11 @@ public class Zadanie2Steps2 {
     }
 
     @Then("user take a screenshot of order confirmation")
-    public void userTakeAScreenshotOfOrderConfirmation() {
-        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+    public void userTakeAScreenshotOfOrderConfirmation() throws IOException {
 
-        String screenshotBase64 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
+        File scrFile =((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile,new File("d:\\screenshot.png"));
+
     }
+
 }
