@@ -54,7 +54,7 @@ public class Zadanie2Steps2 {
 
     @When("user chooses {int} item of product")
     public void userChoosesItemOfProduct(int arg0) {
-        WebElement quantityInput =driver.findElement(By.id("quantity_wanted"));
+        WebElement quantityInput = driver.findElement(By.id("quantity_wanted"));
         quantityInput.clear();
         quantityInput.sendKeys("5");
 
@@ -75,12 +75,12 @@ public class Zadanie2Steps2 {
 
     @And("user confirm address")
     public void userConfirmAddress() {
-      driver.findElement(By.xpath("//*[@id=\"checkout-addresses-step\"]/div/div/form/div[2]/button")).click();
+        driver.findElement(By.xpath("//*[@id=\"checkout-addresses-step\"]/div/div/form/div[2]/button")).click();
     }
 
     @When("user chooses payment option")
     public void userChoosesPaymentOption() {
-        driver.findElement(By.id("delivery_option_1")).click();
+        driver.findElement(By.xpath("//*[@id=\"js-delivery\"]/div/div[1]/div[1]/div/span/span")).click();
         WebElement clickInput = driver.findElement(By.xpath("//*[@id=\"checkout-payment-step\"]/h1"));
         clickInput.click();
     }
@@ -95,8 +95,8 @@ public class Zadanie2Steps2 {
     @Then("user take a screenshot of order confirmation")
     public void userTakeAScreenshotOfOrderConfirmation() throws IOException {
 
-        File scrFile =((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File("d:\\screenshot.png"));
+        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile, new File("d:\\screenshot.png"));
 
     }
 
